@@ -2,9 +2,9 @@
 Description = Recursive caching DNS server intended to be ran locally on LAN.
 
 [Service]
-ExecStart = unbound -c /usr/local/etc/unbound/unbound.conf
-ExecStartPost = unbound-anchor -a /usr/local/etc/unbound/root.key
-ExecReload = kill -HUP $MAINPID
+ExecStart = /usr/local/sbin/unbound -c /usr/local/etc/unbound/unbound.conf
+ExecStartPost = /usr/local/sbin/unbound-anchor -a /usr/local/etc/unbound/root.key
+ExecReload = /usr/bin/kill -HUP $MAINPID
 Restart = on-watchdog
 
 [Install]
