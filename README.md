@@ -1,4 +1,33 @@
 # What
 
-These are all the configuration related data to be used with Unbound on a SystemD based Linux distro. Paired with the [install scripts](https://github.com/buggysolid/unbound-install) it will result in an Unbound daemon
-setup and managed by SystemD with /etc/resolv.conf pointing to the resolver IP on localhost to be used as an aggressive cache. 
+This is configuration for Unbound, /etc/resolv.conf and Systemd that is intended to be bundled with https://github.com/buggysolid/unbound-install
+
+Unbound features enabled.
+
+- QNAME minimisation
+- Prefetching
+- Stale caching
+- Minimal responses
+- DNSSEC
+
+*This will enable Unbound to come up with your operating system via Systemd. Installation will disable systemd-resolverd.*
+
+# Install
+
+apt-get based systems with systemd (Ubuntu/Debian)
+
+```
+sudo apt-get install git -y
+git clone https://github.com/buggysolid/unbound-install
+cd unbound-install
+sudo ./install-apt-get.sh
+```
+
+yum/dnf based systems with systemd (Centos/Fedora/Redhat)
+
+```
+sudo yum install git -y
+git clone https://github.com/buggysolid/unbound-install
+cd unbound-install
+sudo ./install-yum.sh
+```
