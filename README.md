@@ -14,20 +14,23 @@ Unbound features enabled.
 
 # Install
 
-apt-get based systems with systemd (Ubuntu/Debian)
-
 ```
-sudo apt-get install git -y
-git clone https://github.com/buggysolid/unbound-install
-cd unbound-install
-sudo ./install-apt-get.sh
-```
-
-yum/dnf based systems with systemd (Centos/Fedora/Redhat)
-
-```
-sudo yum install git -y
-git clone https://github.com/buggysolid/unbound-install
-cd unbound-install
-sudo ./install-yum.sh
+cat<<EOF | sudo /usr/bin/env bash
+if [[ -f "/usr/bin/apt" ]]; then
+  apt update
+  apt install -y git
+  git clone https://github.com/buggysolid/unbound-install
+  cd unbound-install
+  sudo ./install-apt-get.sh
+elif [[ -f "/usr/bin/yum" ]]; then
+  yum makecache
+  yum install -y git
+  git clone https://github.com/buggysolid/unbound-install
+  cd unbound-install
+  sudo ./install-yum.sh
+else
+  echo "Could not determine which package manager is installed."
+  exit
+fi
+EOF
 ```
